@@ -59,3 +59,15 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.user.get_full_name() or self.user.username
+
+
+class Point(models.Model):
+    address = models.CharField(max_length=255, verbose_name='Адрес точки')
+    connected_recently = models.BooleanField(default=False, verbose_name='Точка подключена вчера')
+    materials_delivered = models.BooleanField(default=False, verbose_name='Материалы доставлены')
+    days_last_card_issued = models.IntegerField(default=0, verbose_name='Кол-во дней после выдачи последней карты')
+    approved_applications = models.IntegerField(default=0, verbose_name='Кол-во одобренных заявок')
+    issued_cards = models.IntegerField(default=0, verbose_name='Кол-во выданных карт')
+
+    def __str__(self):
+        return f"Точка №{self.pk} - {self.address}"
